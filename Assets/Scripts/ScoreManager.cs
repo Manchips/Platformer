@@ -26,4 +26,9 @@ public class ScoreManager : MonoBehaviour
             score.SetText($"00{count}");
         }
     }
+    public void restart()
+    {
+        count = 0;
+        score.SetText($"00{count}");
+    }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 
@@ -32,5 +33,11 @@ public class CoinManager : MonoBehaviour
             coins.SetText($"{count}");
         }
         
+    }
+
+    public void restart()
+    {
+        count = 0;
+        coins.SetText($"{count}");
     }
 }

@@ -2,6 +2,8 @@
 using System.Data.Common;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+
 public class LevelParser : MonoBehaviour
 {
     public string filename;
@@ -10,7 +12,8 @@ public class LevelParser : MonoBehaviour
     public GameObject QuestionBox;
     public GameObject Stone;
     public GameObject Lava;
-    public GameObject Mario;
+    public GameObject Spawn;
+    public GameObject Goal;
     public Transform levelRoot;
     // --------------------------------------------------------------------------
     void Start()
@@ -73,11 +76,16 @@ public class LevelParser : MonoBehaviour
                 {
                     var thing = Instantiate(Lava);
                     thing.transform.position = new Vector3(column, row, 0f);
-                }else if (letter == 'm')
+                }else if (letter == 's')
                 {
-                    var thing = Instantiate(Mario);
+                    var thing = Instantiate(Spawn);
+                    thing.transform.position = new Vector3(column, row, 0f);
+                }else if (letter == 'g')
+                {
+                    var thing = Instantiate(Goal);
                     thing.transform.position = new Vector3(column, row, 0f);
                 }
+                
                 // Parent the new GameObject under levelRoot
                 column++;
             }
@@ -91,6 +99,10 @@ public class LevelParser : MonoBehaviour
         {
            Destroy(child.gameObject);
         }
+
+        FindObjectOfType<CoinManager>().restart();
+        FindObjectOfType<ScoreManager>().restart();
+        FindObjectOfType<TimeManager>().restart();
         LoadLevel();
     }
 }

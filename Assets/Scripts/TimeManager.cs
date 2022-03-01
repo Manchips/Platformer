@@ -44,4 +44,10 @@ public class TimeManager : MonoBehaviour
         timeValue = Mathf.FloorToInt(timeValue); //this will round it down to seconds! 
         time.text = $"{timeValue}";
     }
+    
+    public void restart()
+    {
+        timeValue = 100;
+        time.SetText($"{timeValue}");
+    }
 }
