@@ -10,7 +10,8 @@ public class CharacterController : MonoBehaviour
     public float maxRunSpeed = 6f;
     public float sprint = 10f;
     public float jumpForce = 20f;
-    public float jumpBouns = 6f; 
+    public float jumpBouns = 6f;
+    private Animator animComp;
     
     private Rigidbody body;
 
@@ -22,6 +23,7 @@ public class CharacterController : MonoBehaviour
     {
         body = GetComponent<Rigidbody>();
         collider = GetComponent<Collider>();
+        animComp = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -59,5 +61,7 @@ public class CharacterController : MonoBehaviour
             float newX = body.velocity.x * (1f - Time.deltaTime * 5f);
             body.velocity = new Vector3(newX, body.velocity.y, body.velocity.z);
         }
+        
+        animComp.SetFloat("Speed", body.velocity.magnitude);
     }
 }
