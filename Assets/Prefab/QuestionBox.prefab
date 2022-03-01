@@ -92,7 +92,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7031340827103663497}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 18ef8dc77fca90d418bee589c4c88522, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -110,5 +110,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf972dec8934da84fa34e98951cc2d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CoinManager: {fileID: 0}
+  coinManager: {fileID: 0}
   distance: 1.5

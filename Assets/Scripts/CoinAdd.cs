@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class CoinAdd : MonoBehaviour
 {
-    public CoinManager coinManager;
-    public float distance = 1.5f; //1.5 is just right  
+    public float distance = 0.1f; //1.5 is just right
+
+    public bool hitOnce = false; 
     // Start is called before the first frame update
     void Start()
     {
@@ -36,8 +37,6 @@ public class CoinAdd : MonoBehaviour
                 }
             }
             
-            
-
             yield return null; //just gives up 1 frame for the infinite loop 
         }
     }
@@ -47,15 +46,28 @@ public class CoinAdd : MonoBehaviour
     {
         Ray ray = new Ray(transform.position, Vector3.down); //we want the raycast to go down we don't care if mario jumps on top 
 
-        
         if (Physics.Raycast(ray, out RaycastHit hitInfo, distance))
         {
-            Debug.DrawRay(transform.position,Vector3.down * distance,Color.red);
+            Debug.DrawRay(transform.position,Vector3.down,Color.red);
         }
         else
         {
-            Debug.DrawRay(transform.position,Vector3.down * distance,Color.blue);
+            Debug.DrawRay(transform.position,Vector3.down,Color.blue);
+        }
+
+        if (Physics.Raycast(ray, out hitInfo))
+        {
+            if (hitInfo.collider.CompareTag("Player") && !hitOnce)
+            {
+                hitOnce = true; 
+                FindObjectOfType<CoinManager>().addCoin();
+                FindObjectOfType<ScoreManager>().addPoint();
+            }
+        }else if(hitOnce)
+        {
+            hitOnce = false; 
         }
         
     }
+    
 }

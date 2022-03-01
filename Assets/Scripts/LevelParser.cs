@@ -9,6 +9,8 @@ public class LevelParser : MonoBehaviour
     public GameObject Brick;
     public GameObject QuestionBox;
     public GameObject Stone;
+    public GameObject Lava;
+    public GameObject Mario;
     public Transform levelRoot;
     // --------------------------------------------------------------------------
     void Start()
@@ -48,23 +50,32 @@ public class LevelParser : MonoBehaviour
             char[] letters = currentLine.ToCharArray();
             foreach (var letter in letters)
             {
-                var thing = Instantiate(Rock); //By default lets set it to be the floor 
+                //By default lets set it to be the floor 
                 // Instantiate a new GameObject that matches the type specified by letter
                 // Position the new GameObject at the appropriate location by using row and column
                 if (letter == 'x')
                 {
+                    var thing = Instantiate(Rock);
                     thing.transform.position = new Vector3(column, row, 0f);   
                 }else if (letter == '?')
                 {
-                    thing = Instantiate(QuestionBox);
+                    var thing = Instantiate(QuestionBox);
                     thing.transform.position = new Vector3(column, row, 0f);
                 }else if (letter == 'b')
                 {
-                    thing = Instantiate(Brick);
+                    var thing = Instantiate(Brick);
                     thing.transform.position = new Vector3(column, row, 0f);
                 }else if (letter == 's')
                 {
-                    thing = Instantiate(Stone);
+                    var thing = Instantiate(Stone);
+                    thing.transform.position = new Vector3(column, row, 0f);
+                }else if (letter == 'l')
+                {
+                    var thing = Instantiate(Lava);
+                    thing.transform.position = new Vector3(column, row, 0f);
+                }else if (letter == 'm')
+                {
+                    var thing = Instantiate(Mario);
                     thing.transform.position = new Vector3(column, row, 0f);
                 }
                 // Parent the new GameObject under levelRoot
@@ -74,7 +85,7 @@ public class LevelParser : MonoBehaviour
         }
     }
     // --------------------------------------------------------------------------
-    private void ReloadLevel()
+    public void ReloadLevel()
     {
         foreach (Transform child in levelRoot)
         {

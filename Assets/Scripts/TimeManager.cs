@@ -14,7 +14,7 @@ public class TimeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timeValue = 400; //Set and reset time back to 400 at the start of the game 
+        timeValue = 100; //Set and reset time back to 100 at the start of the game 
     }
 
     // Update is called once per frame
